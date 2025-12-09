@@ -1,0 +1,331 @@
+:root {
+  --bg: #0f1724;
+  --bg-gradient-start: #071025;
+  --card: #0b1220;
+  --accent: #06b6d4;
+  --accent-dark: #0891b2;
+  --muted: #94a3b8;
+  --text: #e6eef6;
+  --glass: rgba(255, 255, 255, 0.04);
+  --radius: 12px;
+  --radius-pill: 999px;
+  --shadow: 0 6px 24px rgba(2, 6, 23, 0.6);
+  --font: Inter, Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(180deg, var(--bg-gradient-start), var(--bg));
+  color: var(--text);
+  font-family: var(--font);
+}
+
+.container {
+  max-width: 980px;
+  margin: 40px auto;
+  padding: 24px;
+}
+
+.card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow);
+}
+
+header {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.avatar {
+  width: 96px;             /* tamanho do avatar no desktop */
+  height: 96px;
+  min-width: 72px;
+  min-height: 72px;
+  border-radius: 12px;
+  overflow: hidden;        /* essencial para cortar a imagem dentro do quadrado */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--accent), #7c3aed);
+  flex-shrink: 0;          /* evita encolher em layouts responsivos */
+}
+
+/* garante que a imagem fique exatamente no tamanho do avatar e cortada (sem esticar) */
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;       /* mantém crop central sem distorcer */
+  display: block;
+  cursor: zoom-in;
+  transition: transform .25s ease;
+}
+
+/* reduz tamanho do avatar em telas pequenas */
+@media (max-width: 420px) {
+  .avatar { width: 72px; height: 72px; }
+}
+
+h1 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.lead {
+  margin-top: 6px;
+  color: var(--muted);
+}
+
+.meta {
+  margin-left: auto;
+  text-align: right;
+}
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px 16px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: 600;
+
+  background: var(--accent);
+  color: #021026;
+
+  overflow: hidden;
+  cursor: pointer;
+
+  z-index: 2; /* TEXTO EM CIMA */
+}
+
+/* fundo animado */
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #25d366, #128c7e);
+  transform: translateX(-100%);
+  transition: 0.4s ease;
+
+  z-index: 0; /* FUNDO SEMPRE ATRÁS */
+}
+
+/* colocar o texto SEMPRE por cima */
+.btn span,
+.btn {
+  position: relative;
+  z-index: 3 !important; /* GARANTIDO */
+}
+
+.btn:hover::before {
+  transform: translateX(0);
+}
+
+.btn:hover {
+  color: #fff !important;
+}
+
+
+/* ===== Skill colors por linguagem (visíveis por padrão e no hover) ===== */
+.skill {
+  margin-bottom: 28px; /* aumenta a distância para o bloco de contato */
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  background: rgba(255,255,255,0.03);
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
+  cursor: default;
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+/* efeito leve ao passar o mouse */
+.skill:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(2,6,23,0.45);
+}
+
+/* cores específicas (cores principais e texto com bom contraste) */
+.skill[data-lang="python"] {
+  background: linear-gradient(90deg,#2b6cb0,#306998);
+  color: #fff;
+  border: none;
+}
+
+.skill[data-lang="yolo"] {
+  /* cor roxa/teal para IA/YOLO */
+  background: linear-gradient(90deg,#7c3aed,#06b6d4);
+  color: #fff;
+  border: none;
+}
+
+.skill[data-lang="html"] {
+  background: linear-gradient(90deg,#f06529,#eb6b3a);
+  color: #fff;
+  border: none;
+}
+
+.skill[data-lang="css"] {
+  background: linear-gradient(90deg,#264de4,#2b6be6);
+  color: #fff;
+  border: none;
+}
+
+.skill[data-lang="javascript"] {
+  background: linear-gradient(90deg,#f7df1e,#f0c419);
+  color: #111; /* texto escuro para legibilidade */
+  border: none;
+}
+
+.skill[data-lang="java"] {
+  background: linear-gradient(90deg,#f89820,#e07a18);
+  color: #fff;
+  border: none;
+}
+
+.skill[data-lang="php"] {
+  background: linear-gradient(90deg,#8993be,#6f84b8);
+  color: #fff;
+  border: none;
+}
+
+.skill[data-lang="sql"] {
+  background: linear-gradient(90deg,#336791,#2d5b7f);
+  color: #fff;
+  border: none;
+}
+
+.skill[data-lang="suporte"] {
+  /* verde suave para suporte */
+  background: linear-gradient(90deg,#16a34a,#059669);
+  color: #fff;
+  border: none;
+}
+
+.skill[data-lang="office"] {
+  /* cor azul do Office */
+  background: linear-gradient(90deg,#2b5797,#24528e);
+  color: #fff;
+  border: none;
+}
+
+
+/* ======== CONTATO ======== */
+
+.section h2 {
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+/* container da área de contato */
+.section.contact-box {
+  background: rgba(255,255,255,0.03);
+  padding: 16px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255,255,255,0.05);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+}
+
+/* cada link de contato */
+.link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 10px 14px;
+  margin-bottom: 10px;
+
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+
+  background: rgba(255,255,255,0.04);
+  border-radius: var(--radius);
+  border: 1px solid rgba(255,255,255,0.06);
+
+  transition: .25s ease;
+}
+
+/* ícones ficam mais destacados */
+.link::before {
+  font-size: 16px;
+}
+
+/* hover bonito */
+.link:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.12);
+  transform: translateX(4px);
+}
+
+/* cor especial para WhatsApp */
+.link[href^="tel"] {
+  border-left: 4px solid #25d366;
+}
+
+/* cor especial para e-mail */
+.link[href^="https://mail"] {
+  border-left: 4px solid #06b6d4;
+}
+
+.link[href*="github"] {
+  border-left: 4px solid #6e40c9; /* roxo bonito */
+}
+
+
+
+/* caso queira que algumas skills fiquem mais sutis (sem full color) */
+/* basta remover data-lang ou ajustar as regras acima */
+
+/* Pequeno ajuste responsivo para telas pequenas: reduzir gap e padding */
+@media (max-width: 420px) {
+  .skill { padding: 6px 8px; font-size: 12px; }
+}
+
+
+/* ===== OVERLAY PARA AMPLIAR A IMAGEM ===== */
+.img-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+  z-index: 99999;
+}
+
+.img-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.img-overlay img {
+  max-width: 70vw;    /* <<< TAMANHO CONTROLADO AQUI */
+  max-height: 70vh;   /* <<< FICA PROPORCIONAL */
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+  object-fit: cover;
+}
+
+.close-hint {
+  position: absolute;
+  bottom: 30px;
+  font-size: 14px;
+  color: #e2e8f0;
+  opacity: .8;
+}
